@@ -22,7 +22,7 @@
 
 #define BUF_SIZE		20
 #define DEFAULT_BL_NAME		"lcd-backlight"
-#define MAX_BRIGHTNESS		255
+#define MAX_BRIGHTNESS		280
 
 struct lp855x {
 	const char *chipname;

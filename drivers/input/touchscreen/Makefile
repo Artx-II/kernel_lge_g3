@@ -1,3 +1,4 @@
+CFLAGS_wake_gestures.o := -Wno-unused-value
 #
 # Makefile for the touchscreen drivers.
 #
@@ -5,6 +6,9 @@
 # Each configuration option enables a list of files.
 
 wm97xx-ts-y := wm97xx-core.o
+
+# for sweep2wake, leave 1st to avoid merge issues at the end of the file
+obj-$(CONFIG_WAKE_GESTURES)		+= wake_gestures.o
 
 obj-$(CONFIG_TOUCHSCREEN_88PM860X)	+= 88pm860x-ts.o
 obj-$(CONFIG_TOUCHSCREEN_AD7877)	+= ad7877.o

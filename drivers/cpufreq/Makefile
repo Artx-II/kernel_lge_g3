@@ -1,7 +1,8 @@
 # CPUfreq core
-obj-$(CONFIG_CPU_FREQ)			+= cpufreq.o cpu-boost.o
+obj-$(CONFIG_CPU_FREQ)			+= cpufreq.o #cpu-boost.o
 # CPUfreq stats
 obj-$(CONFIG_CPU_FREQ_STAT)             += cpufreq_stats.o
+obj-$(CONFIG_CPU_INPUT_BOOST)		+= cpu_input_boost.o
 
 # CPUfreq governors 
 obj-$(CONFIG_CPU_FREQ_GOV_PERFORMANCE)	+= cpufreq_performance.o
@@ -9,7 +10,32 @@ obj-$(CONFIG_CPU_FREQ_GOV_POWERSAVE)	+= cpufreq_powersave.o
 obj-$(CONFIG_CPU_FREQ_GOV_USERSPACE)	+= cpufreq_userspace.o
 obj-$(CONFIG_CPU_FREQ_GOV_ONDEMAND)	+= cpufreq_ondemand.o
 obj-$(CONFIG_CPU_FREQ_GOV_CONSERVATIVE)	+= cpufreq_conservative.o
+obj-$(CONFIG_CPU_FREQ_GOV_ZZMOOVE)      += cpufreq_zzmoove.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVE)	+= cpufreq_interactive.o
+obj-$(CONFIG_CPU_FREQ_GOV_PEGASUSQ)	+= cpufreq_pegasusq.o
+obj-$(CONFIG_CPU_FREQ_GOV_ALUCARD)	            += cpufreq_alucard.o
+obj-$(CONFIG_CPU_FREQ_GOV_BIOSHOCK)	            += cpufreq_bioshock.o
+obj-$(CONFIG_CPU_FREQ_GOV_DARKNESS)	            += cpufreq_darkness.o
+obj-$(CONFIG_CPU_FREQ_GOV_IMPULSE)	            += cpufreq_impulse.o
+obj-$(CONFIG_CPU_FREQ_GOV_INTELLIACTIVE)        += cpufreq_intelliactive.o
+obj-$(CONFIG_CPU_FREQ_GOV_INTELLIMM)	        += cpufreq_intellimm.o
+obj-$(CONFIG_CPU_FREQ_GOV_LIONHEART)	        += cpufreq_lionheart.o
+obj-$(CONFIG_CPU_FREQ_GOV_NIGHTMARE)	        += cpufreq_nightmare.o
+obj-$(CONFIG_CPU_FREQ_GOV_RAGINGMOLASSES)  	    += cpufreq_ragingmolasses.
+obj-$(CONFIG_CPU_FREQ_GOV_SMARTASSV2)   	    += cpufreq_smartass2.o
+obj-$(CONFIG_CPU_FREQ_GOV_SMARTMAX)             += cpufreq_smartmax.o
+obj-$(CONFIG_CPU_FREQ_GOV_SLIM)                 += cpufreq_slim.o
+obj-$(CONFIG_CPU_FREQ_GOV_TRIPNDROID)	        += cpufreq_tripndroid.o
+obj-$(CONFIG_CPU_FREQ_GOV_WAVE)		            += cpufreq_wave.o
+obj-$(CONFIG_CPU_FREQ_GOV_WHEATLEY)	            += cpufreq_wheatley.o
+obj-$(CONFIG_CPU_FREQ_GOV_YANKACTIVE)	        += cpufreq_yankactive.o
+obj-$(CONFIG_CPU_FREQ_GOV_BADASS)	+= cpufreq_badass.o
+obj-$(CONFIG_CPU_FREQ_GOV_SMARTASSH3)	+= cpufreq_smartassH3.o
+obj-$(CONFIG_CPU_FREQ_GOV_YANKDEMAND)	+= cpufreq_yankdemand.o
+obj-$(CONFIG_CPU_FREQ_GOV_ELEMENTALX)	+= cpufreq_elementalx.o
+obj-$(CONFIG_CPU_FREQ_GOV_DANCEDANCE)	+= cpufreq_dancedance.o
+obj-$(CONFIG_CPU_FREQ_GOV_SAVAGEDZEN)	+= cpufreq_savagedzen.o
+obj-$(CONFIG_CPU_FREQ_GOV_HYPER)	+= cpufreq_hyper.o
 
 # CPUfreq cross-arch helpers
 obj-$(CONFIG_CPU_FREQ_TABLE)		+= freq_table.o
