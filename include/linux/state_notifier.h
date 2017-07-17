@@ -1,5 +1,5 @@
-#ifndef __LINUX_TOUCHSCREEN_STATE_NOTIFIER_H
-#define __LINUX_TOUCHSCREEN_STATE_NOTIFIER_H
+#ifndef __LINUX_STATE_NOTIFIER_H
+#define __LINUX_STATE_NOTIFIER_H
 
 #include <linux/notifier.h>
 
@@ -10,10 +10,12 @@ struct state_event {
 	void *data;
 };
 
+extern bool state_suspended;
+extern bool use_fb_notifier;
 extern void state_suspend(void);
 extern void state_resume(void);
 int state_register_client(struct notifier_block *nb);
 int state_unregister_client(struct notifier_block *nb);
 int state_notifier_call_chain(unsigned long val, void *v);
 
-#endif
+#endif /* _LINUX_STATE_NOTIFIER_H */
