@@ -1491,7 +1491,7 @@ static int assign_cfs_rq_runtime(struct cfs_rq *cfs_rq)
 		 */
 		if (!cfs_b->timer_active) {
 			__refill_cfs_bandwidth_runtime(cfs_b);
-c			__start_cfs_bandwidth(cfs_b);
+			__start_cfs_bandwidth(cfs_b);
 		}
 
 		if (cfs_b->runtime > 0) {
