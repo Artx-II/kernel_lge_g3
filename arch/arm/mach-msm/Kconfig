@@ -3058,6 +3058,11 @@ config KRAIT_REGULATOR
 	 regulators running in ganged mode inside the PMIC. Enable
 	 this option to support such configurations.
 
+config PVS_LEVEL_INTERFACE
+	bool "Expose PVS level information in SYSFS"
+	help
+	 Allow PVS level to be shown
+
 endif
 
 config KERNEL_TEXT_MPU_PROT
