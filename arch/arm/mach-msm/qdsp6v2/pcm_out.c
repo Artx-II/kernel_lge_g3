@@ -239,7 +239,7 @@ static long pcm_out_ioctl(struct file *file, unsigned int cmd,
 			rc = -EINVAL;
 			break;
 		}
-		if (config.sample_rate < 8000 || config.sample_rate > 48000) {
+		if (config.sample_rate < 8000 || config.sample_rate > 96000) {
 			rc = -EINVAL;
 			break;
 		}

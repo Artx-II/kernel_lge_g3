@@ -178,8 +178,8 @@ static uint32_t getbuffersize(uint32_t samplerate)
 		return 480*8;
 	else if (samplerate == 16000)
 		return 480*16;
-	else if (samplerate == 48000)
-		return 480*48;
+	else if (samplerate == 96000)
+		return 480*96;
 	return 0;
 }
 
@@ -458,7 +458,7 @@ static long pcm_in_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 
 		if (config.sample_rate != 8000 &&
 			config.sample_rate != 16000 &&
-			config.sample_rate != 48000) {
+			config.sample_rate != 96000) {
 			pr_err("%s: Sample rate(%d) not supported\n",
 				__func__, config.sample_rate);
 			rc = -EINVAL;
@@ -592,7 +592,7 @@ static int __init pcm_in_proxy_init(void)
 	dev_info->capability = SNDDEV_CAP_RX;
 	dev_info->opened = 0;
 	msm_snddev_register(dev_info);
-	dev_info->sample_rate = 48000;
+	dev_info->sample_rate = 96000;
 
 	pr_debug("%s: init done for proxy\n", __func__);
 

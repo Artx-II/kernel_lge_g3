@@ -121,7 +121,7 @@ static int snddev_virtual_probe(struct platform_device *pdev)
 	dev_info->dev_ops.close = snddev_virtual_close;
 	dev_info->dev_ops.set_freq = snddev_virtual_set_freq;
 	dev_info->capability = pdata->capability;
-	dev_info->sample_rate = 48000;
+	dev_info->sample_rate = 96000;
 	dev_info->opened = 0;
 	dev_info->sessions = 0;
 

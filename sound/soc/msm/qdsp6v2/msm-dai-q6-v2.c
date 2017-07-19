@@ -913,13 +913,13 @@ static int msm_dai_q6_dai_remove(struct snd_soc_dai *dai)
 
 static struct snd_soc_dai_driver msm_dai_q6_afe_rx_dai = {
 	.playback = {
-		.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
+		.rates = SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
 		SNDRV_PCM_RATE_16000,
 		.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
 		.channels_min = 1,
 		.channels_max = 2,
 		.rate_min =     8000,
-		.rate_max =	48000,
+		.rate_max =	96000,
 	},
 	.ops = &msm_dai_q6_ops,
 	.probe = msm_dai_q6_dai_probe,
@@ -928,13 +928,13 @@ static struct snd_soc_dai_driver msm_dai_q6_afe_rx_dai = {
 
 static struct snd_soc_dai_driver msm_dai_q6_afe_tx_dai = {
 	.capture = {
-		.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
+		.rates = SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
 		SNDRV_PCM_RATE_16000,
-		.formats = SNDRV_PCM_FMTBIT_S16_LE,
+		.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
 		.channels_min = 1,
 		.channels_max = 8,
 		.rate_min =     8000,
-		.rate_max =	48000,
+		.rate_max =	96000,
 	},
 	.ops = &msm_dai_q6_ops,
 	.probe = msm_dai_q6_dai_probe,
@@ -960,12 +960,12 @@ static struct snd_soc_dai_driver msm_dai_q6_slimbus_1_rx_dai = {
 static struct snd_soc_dai_driver msm_dai_q6_slimbus_1_tx_dai = {
 	.capture = {
 		.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-		SNDRV_PCM_RATE_48000,
-		.formats = SNDRV_PCM_FMTBIT_S16_LE,
+		SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000,
+		.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
 		.channels_min = 1,
 		.channels_max = 2,
 		.rate_min = 8000,
-		.rate_max = 48000,
+		.rate_max = 96000,
 	},
 	.ops = &msm_dai_q6_ops,
 	.probe = msm_dai_q6_dai_probe,
@@ -1002,12 +1002,12 @@ static struct snd_soc_dai_driver msm_dai_q6_bt_sco_tx_dai = {
 
 static struct snd_soc_dai_driver msm_dai_q6_fm_rx_dai = {
 	.playback = {
-		.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
+		.rates = SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
 		SNDRV_PCM_RATE_16000,
-		.formats = SNDRV_PCM_FMTBIT_S16_LE,
+		.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
 		.channels_min = 2,
 		.channels_max = 2,
-		.rate_max = 48000,
+		.rate_max = 96000,
 		.rate_min = 8000,
 	},
 	.ops = &msm_dai_q6_ops,
@@ -1017,12 +1017,12 @@ static struct snd_soc_dai_driver msm_dai_q6_fm_rx_dai = {
 
 static struct snd_soc_dai_driver msm_dai_q6_fm_tx_dai = {
 	.capture = {
-		.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
+		.rates = SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
 		SNDRV_PCM_RATE_16000,
-		.formats = SNDRV_PCM_FMTBIT_S16_LE,
+		.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
 		.channels_min = 2,
 		.channels_max = 2,
-		.rate_max = 48000,
+		.rate_max = 96000,
 		.rate_min = 8000,
 	},
 	.ops = &msm_dai_q6_ops,
@@ -1032,13 +1032,13 @@ static struct snd_soc_dai_driver msm_dai_q6_fm_tx_dai = {
 
 static struct snd_soc_dai_driver msm_dai_q6_voice_playback_tx_dai = {
 	.playback = {
-		.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
+		.rates = SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
 		SNDRV_PCM_RATE_16000,
-		.formats = SNDRV_PCM_FMTBIT_S16_LE,
+		.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
 		.channels_min = 1,
 		.channels_max = 2,
 		.rate_min =     8000,
-		.rate_max =     48000,
+		.rate_max =     96000,
 	},
 	.ops = &msm_dai_q6_ops,
 	.probe = msm_dai_q6_dai_probe,
@@ -1047,13 +1047,13 @@ static struct snd_soc_dai_driver msm_dai_q6_voice_playback_tx_dai = {
 
 static struct snd_soc_dai_driver msm_dai_q6_incall_record_dai = {
 	.capture = {
-		.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
+		.rates = SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
 		SNDRV_PCM_RATE_16000,
 		.formats = SNDRV_PCM_FMTBIT_S16_LE,
 		.channels_min = 1,
 		.channels_max = 2,
 		.rate_min =     8000,
-		.rate_max =     48000,
+		.rate_max =     96000,
 	},
 	.ops = &msm_dai_q6_ops,
 	.probe = msm_dai_q6_dai_probe,
@@ -1738,18 +1738,18 @@ static struct snd_soc_dai_ops msm_dai_q6_mi2s_ops = {
 /* Channel min and max are initialized base on platform data */
 static struct snd_soc_dai_driver msm_dai_q6_mi2s_dai = {
 	.playback = {
-		.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
+		.rates = SNDRV_PCM_RATE_96000 | SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
 		SNDRV_PCM_RATE_16000,
 		.formats = SNDRV_PCM_FMTBIT_S16_LE,
 		.rate_min =     8000,
-		.rate_max =     48000,
+		.rate_max =     96000,
 	},
 	.capture = {
 		.rates = SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_8000 |
 		SNDRV_PCM_RATE_16000,
 		.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
 		.rate_min =     8000,
-		.rate_max =     48000,
+		.rate_max =     96000,
 	},
 	.ops = &msm_dai_q6_mi2s_ops,
 	.probe = msm_dai_q6_dai_mi2s_probe,

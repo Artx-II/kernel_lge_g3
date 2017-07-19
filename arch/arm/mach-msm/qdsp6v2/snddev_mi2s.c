@@ -370,11 +370,11 @@ static int snddev_mi2s_close(struct msm_snddev_info *dev_info)
 
 static int snddev_mi2s_set_freq(struct msm_snddev_info *dev_info, u32 req_freq)
 {
-	if (req_freq != 48000) {
+	if (req_freq != 96000) {
 		pr_info("%s: Unsupported Frequency:%d\n", __func__, req_freq);
 		return -EINVAL;
 	}
-	return 48000;
+	return 96000;
 }
 
 

@@ -1117,7 +1117,7 @@ int audio_aio_open(struct q6audio_aio *audio, struct file *file)
 	audio->str_cfg.buffer_size = FRAME_SIZE;
 	audio->str_cfg.buffer_count = FRAME_NUM;
 	audio->pcm_cfg.buffer_count = PCM_BUF_COUNT;
-	audio->pcm_cfg.sample_rate = 48000;
+	audio->pcm_cfg.sample_rate = 96000;
 	audio->pcm_cfg.channel_count = 2;
 
 	/* Only AIO interface */

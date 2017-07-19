@@ -197,7 +197,7 @@ static int msm_slim_0_tx_ch = 1;
 static int msm_btsco_rate = BTSCO_RATE_8KHZ;
 static int msm_btsco_ch = 1;
 static int msm_hdmi_rx_ch = 2;
-static int slim0_rx_sample_rate = SAMPLING_RATE_48KHZ;
+static int slim0_rx_sample_rate = SAMPLING_RATE_96KHZ;
 static int msm_proxy_rx_ch = 2;
 
 static struct mutex cdc_mclk_mutex;
@@ -978,7 +978,7 @@ static int msm_proxy_rx_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 	if (channels->max < 2)
 		channels->min = channels->max = 2;
 	channels->min = channels->max = msm_proxy_rx_ch;
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 	return 0;
 }
 
@@ -988,7 +988,7 @@ static int msm_proxy_tx_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 	struct snd_interval *rate = hw_param_interval(params,
 					SNDRV_PCM_HW_PARAM_RATE);
 
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 	return 0;
 }
 
@@ -1008,7 +1008,7 @@ static int apq8074_hdmi_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 				hdmi_rx_bit_format);
 	if (channels->max < 2)
 		channels->min = channels->max = 2;
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 	channels->min = channels->max = msm_hdmi_rx_ch;
 
 	return 0;
@@ -1152,7 +1152,7 @@ static int msm_slim_0_tx_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 			SNDRV_PCM_HW_PARAM_CHANNELS);
 
 	pr_debug("%s()\n", __func__);
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 	channels->min = channels->max = msm_slim_0_tx_ch;
 
 	return 0;
@@ -1192,7 +1192,7 @@ static int msm_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 					SNDRV_PCM_HW_PARAM_RATE);
 
 	pr_debug("%s()\n", __func__);
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 
 	return 0;
 }

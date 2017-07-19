@@ -1465,7 +1465,7 @@ static int msm_proxy_rx_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 	if (channels->max < 2)
 		channels->min = channels->max = 2;
 	channels->min = channels->max = msm_proxy_rx_ch;
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 	return 0;
 }
 
@@ -1475,7 +1475,7 @@ static int msm_proxy_tx_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 	struct snd_interval *rate = hw_param_interval(params,
 					SNDRV_PCM_HW_PARAM_RATE);
 
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 	return 0;
 }
 
@@ -1701,7 +1701,7 @@ static int msm_slim_0_tx_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 	pr_debug("%s()\n", __func__);
 	param_set_mask(params, SNDRV_PCM_HW_PARAM_FORMAT,
 				   slim0_tx_bit_format);
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 	channels->min = channels->max = msm_slim_0_tx_ch;
 
 	return 0;
@@ -1717,7 +1717,7 @@ static int msm_slim_4_tx_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 			SNDRV_PCM_HW_PARAM_CHANNELS);
 
 	pr_debug("%s()\n", __func__);
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 	channels->min = channels->max = 2;
 
 	return 0;
@@ -1757,7 +1757,7 @@ static int msm_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 					SNDRV_PCM_HW_PARAM_RATE);
 
 	pr_debug("%s()\n", __func__);
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 
 	return 0;
 }
@@ -1772,7 +1772,7 @@ static int msm_be_fm_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
 	    hw_param_interval(params, SNDRV_PCM_HW_PARAM_CHANNELS);
 
 	pr_debug("%s()\n", __func__);
-	rate->min = rate->max = 48000;
+	rate->min = rate->max = 96000;
 	channels->min = channels->max = 2;
 
 	return 0;

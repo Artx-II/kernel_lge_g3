@@ -640,7 +640,7 @@ static struct adie_codec_action_unit iearpiece_48KHz_osr256_actions[] =
 
 static struct adie_codec_hwsetting_entry iearpiece_settings[] = {
 	{
-		.freq_plan = 48000,
+		.freq_plan = 96000,
 		.osr = 256,
 		.actions = iearpiece_48KHz_osr256_actions,
 		.action_sz = ARRAY_SIZE(iearpiece_48KHz_osr256_actions),
@@ -659,7 +659,7 @@ static struct snddev_icodec_data snddev_iearpiece_data = {
 	.copp_id = 0,
 	.profile = &iearpiece_profile,
 	.channel_mode = 1,
-	.default_sample_rate = 48000,
+	.default_sample_rate = 96000,
 };
 
 static struct platform_device msm_iearpiece_device = {
@@ -672,7 +672,7 @@ static struct adie_codec_action_unit imic_48KHz_osr256_actions[] =
 
 static struct adie_codec_hwsetting_entry imic_settings[] = {
 	{
-		.freq_plan = 48000,
+		.freq_plan = 96000,
 		.osr = 256,
 		.actions = imic_48KHz_osr256_actions,
 		.action_sz = ARRAY_SIZE(imic_48KHz_osr256_actions),

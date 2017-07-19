@@ -72,9 +72,9 @@ static struct snd_pcm_hardware msm_compr_hardware_capture = {
 				SNDRV_PCM_INFO_INTERLEAVED |
 				SNDRV_PCM_INFO_PAUSE | SNDRV_PCM_INFO_RESUME),
 	.formats =	      SNDRV_PCM_FMTBIT_S16_LE,
-	.rates =		SNDRV_PCM_RATE_8000_48000,
+	.rates =		SNDRV_PCM_RATE_8000_96000,
 	.rate_min =	     8000,
-	.rate_max =	     48000,
+	.rate_max =	     96000,
 	.channels_min =	 1,
 	.channels_max =	 8,
 	.buffer_bytes_max =
@@ -93,9 +93,9 @@ static struct snd_pcm_hardware msm_compr_hardware_playback = {
 				SNDRV_PCM_INFO_INTERLEAVED |
 				SNDRV_PCM_INFO_PAUSE | SNDRV_PCM_INFO_RESUME),
 	.formats =	      SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE,
-	.rates =		SNDRV_PCM_RATE_8000_48000 | SNDRV_PCM_RATE_KNOT,
+	.rates =		SNDRV_PCM_RATE_8000_96000 | SNDRV_PCM_RATE_KNOT,
 	.rate_min =	     8000,
-	.rate_max =	     48000,
+	.rate_max =	     96000,
 	.channels_min =	 1,
 	.channels_max =	 8,
 	.buffer_bytes_max =     1024 * 1024,
@@ -108,7 +108,7 @@ static struct snd_pcm_hardware msm_compr_hardware_playback = {
 
 /* Conventional and unconventional sample rate supported */
 static unsigned int supported_sample_rates[] = {
-	8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000
+	8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 96000
 };
 
 /* Add supported codecs for compress capture path */
@@ -1031,7 +1031,6 @@ static int msm_compr_ioctl(struct snd_pcm_substream *substream,
 			struct snd_dec_ddp *ddp =
 				&compr->info.codec_param.codec.options.ddp;
 			uint32_t params_length = 0;
-			memset(params_value, 0, MAX_AC3_PARAM_SIZE);
 			/* check integer overflow */
 			if (ddp->params_length > UINT_MAX/sizeof(int)) {
 				pr_err("%s: Integer overflow ddp->params_length %d\n",
@@ -1076,14 +1075,12 @@ static int msm_compr_ioctl(struct snd_pcm_substream *substream,
 			struct snd_dec_ddp *ddp =
 				&compr->info.codec_param.codec.options.ddp;
 			uint32_t params_length = 0;
-			memset(params_value, 0, MAX_AC3_PARAM_SIZE);
 			/* check integer overflow */
 			if (ddp->params_length > UINT_MAX/sizeof(int)) {
 				pr_err("%s: Integer overflow ddp->params_length %d\n",
 				__func__, ddp->params_length);
 				return -EINVAL;
 			}
-			params_length = ddp->params_length*sizeof(int);
 			if (params_length > MAX_AC3_PARAM_SIZE) {
 				/*MAX is 36*sizeof(int) this should not happen*/
 				pr_err("%s: params_length(%d) is greater than %d\n",

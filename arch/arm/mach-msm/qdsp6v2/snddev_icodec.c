@@ -795,12 +795,12 @@ static int snddev_icodec_check_freq(u32 req_freq)
 {
 	int rc = -EINVAL;
 
-	if ((req_freq != 0) && (req_freq >= 8000) && (req_freq <= 48000)) {
+	if ((req_freq != 0) && (req_freq >= 8000) && (req_freq <= 96000)) {
 		if ((req_freq == 8000) || (req_freq == 11025) ||
 			(req_freq == 12000) || (req_freq == 16000) ||
 			(req_freq == 22050) || (req_freq == 24000) ||
 			(req_freq == 32000) || (req_freq == 44100) ||
-			(req_freq == 48000)) {
+			(req_freq == 48000) || (req_freq == 96000)) {
 				rc = 0;
 		} else
 			pr_info("%s: Unsupported Frequency:%d\n", __func__,
