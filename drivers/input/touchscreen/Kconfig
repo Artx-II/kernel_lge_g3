@@ -1040,4 +1040,8 @@ config ALUCARD_TOUCHSCREEN_BOOST
 	help
 	  Alucard touchscreen boost.
 
+config STATE_NOTIFIER
+        bool "State Notifier"
+	default y
+
 endif

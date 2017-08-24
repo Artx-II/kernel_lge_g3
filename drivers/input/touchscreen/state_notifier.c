@@ -29,6 +29,8 @@ do {				\
 		pr_info(msg);	\
 } while (0)
 
+bool use_fb_notifier = false;
+module_param_named(use_fb_notifier, use_fb_notifier, bool, 0664);
 static bool enabled;
 module_param_named(enabled, enabled, bool, 0664);
 static unsigned int suspend_defer_time = DEFAULT_SUSPEND_DEFER_TIME;

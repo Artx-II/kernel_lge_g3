@@ -3067,6 +3067,11 @@ config PVS_LEVEL_INTERFACE
 	help
 	 Allow PVS level to be shown
 
+config UNDERCLOCK_CONFIG
+        default y
+        bool "Add Underclock options in SysFs"
+        help
+         Allow Underclock to 1.9Ghz or 1.4Ghz
 endif
 
 config KERNEL_TEXT_MPU_PROT

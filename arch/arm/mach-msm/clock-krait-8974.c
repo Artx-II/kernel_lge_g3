@@ -21,6 +21,7 @@
 #include <linux/regulator/consumer.h>
 #include <linux/of.h>
 #include <linux/cpumask.h>
+#include <linux/moduleparam.h>
 
 #include <asm/cputype.h>
 
@@ -35,6 +36,13 @@
 int pvs_level = -1;
 module_param(pvs_level, int, S_IRUGO);
 #endif
+
+// Underclock Control
+int under_enabled = 0;
+module_param(under_enabled, int, 0644);
+// Underclock more
+int underr_enabled = 0;
+module_param(underr_enabled, int, 0644);
 
 /* Clock inputs coming into Krait subsystem */
 DEFINE_FIXED_DIV_CLK(hfpll_src_clk, 1, NULL);
@@ -713,6 +721,28 @@ static int clock_krait_8974_driver_probe(struct platform_device *pdev)
 			rows = ret;
 		}
 	}
+
+if (under_enabled == 1)
+    underr_enabled = 0;
+
+if (underr_enabled == 1)
+    under_enabled = 0;
+
+        // Underclock to 1.9Ghz
+        if (under_enabled == 1) {
+                while (rows--) {
+                        if (freq[rows - 1] == 1958400000)
+                                break;
+                }
+        }
+
+        // Underclock to 1.4Ghz
+        if (underr_enabled == 1) {
+                while (rows--) {
+                        if (freq[rows - 1] == 1497600000)
+                                break;
+                }
+        }
 
 	krait_update_uv(uv, rows, pvs ? 25000 : 0);
 

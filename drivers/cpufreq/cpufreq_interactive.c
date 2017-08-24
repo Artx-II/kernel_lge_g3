@@ -30,6 +30,7 @@
 #include <linux/kthread.h>
 #include <linux/slab.h>
 #include <linux/kernel_stat.h>
+#include <linux/touchboost.h>
 #include <asm/cputime.h>
 
 #define CREATE_TRACE_POINTS
@@ -65,17 +66,17 @@ static spinlock_t speedchange_cpumask_lock;
 static struct mutex gov_lock;
 
 /* Hi speed to bump to from lo speed when load burst (default max) */
-static unsigned int hispeed_freq = 1190400;
+static unsigned int hispeed_freq;
 
 /* Go to hi speed when CPU load at or above this value. */
-#define DEFAULT_GO_HISPEED_LOAD 80
+#define DEFAULT_GO_HISPEED_LOAD 99
 static unsigned long go_hispeed_load = DEFAULT_GO_HISPEED_LOAD;
 
 /* Sampling down factor to be applied to min_sample_time at max freq */
 static unsigned int sampling_down_factor;
 
 /* Target load.  Lower values result in higher CPU speeds. */
-#define DEFAULT_TARGET_LOAD 85
+#define DEFAULT_TARGET_LOAD 90
 static unsigned int default_target_loads[] = {DEFAULT_TARGET_LOAD};
 static spinlock_t target_loads_lock;
 static unsigned int *target_loads = default_target_loads;
@@ -113,6 +114,8 @@ static int boost_val;
 static int boostpulse_duration_val = DEFAULT_MIN_SAMPLE_TIME;
 /* End time of boost pulse in ktime converted to usecs */
 static u64 boostpulse_endtime;
+/* TouchBoost control */
+static int touchboost_val;
 
 /*
  * Max additional time to wait in idle, beyond timer_rate, at speeds above
@@ -382,9 +385,12 @@ static void cpufreq_interactive_timer(unsigned long data)
 	loadadjfreq = (unsigned int)cputime_speedadj * 100;
 	cpu_load = loadadjfreq / pcpu->target_freq;
 	pcpu->prev_load = cpu_load;
-	boosted = boost_val || now < boostpulse_endtime;
-
-	if (cpu_load >= go_hispeed_load || boosted) {
+        if (touchboost_val == 1) {
+        	boosted = boost_val || now < (last_input_time + get_input_boost_duration());
+                } else {
+                    	boosted = boost_val || now < boostpulse_endtime;
+                }
+	if (cpu_load >= go_hispeed_load) {
 		if (pcpu->target_freq < hispeed_freq) {
 			new_freq = hispeed_freq;
 		} else {
@@ -395,6 +401,13 @@ static void cpufreq_interactive_timer(unsigned long data)
 		}
 	} else {
 		new_freq = choose_freq(pcpu, loadadjfreq);
+
+if (touchboost_val == 1) {
+	if (boosted) {
+		if (new_freq < input_boost_freq)
+			new_freq = input_boost_freq;
+	}
+}
 
 		if (sync_freq && new_freq < sync_freq) {
 
@@ -1005,6 +1018,27 @@ static ssize_t store_boost(struct kobject *kobj, struct attribute *attr,
 
 define_one_global_rw(boost);
 
+static ssize_t show_touchboost(struct kobject *kobj, struct attribute *attr,
+                               char *buf)
+{
+        return sprintf(buf, "%d\n", touchboost_val);
+}
+
+static ssize_t store_touchboost(struct kobject *kobj, struct attribute *attr,
+                                const char *buf, size_t count)
+{
+        int ret;
+        unsigned long val;
+
+        ret = kstrtoul(buf, 0, &val);
+        if (ret < 0)
+                return ret;
+        touchboost_val = val;
+        return count;
+}
+
+define_one_global_rw(touchboost);
+
 static ssize_t store_boostpulse(struct kobject *kobj, struct attribute *attr,
 				const char *buf, size_t count)
 {
@@ -1148,6 +1182,7 @@ static struct attribute *interactive_attributes[] = {
 	&timer_rate_attr.attr,
 	&timer_slack.attr,
 	&boost.attr,
+        &touchboost.attr,
 	&boostpulse.attr,
 	&boostpulse_duration.attr,
 	&io_is_busy_attr.attr,
